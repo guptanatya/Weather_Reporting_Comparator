@@ -29,12 +29,16 @@ public class CurrentWeatherReportPage {
 	@FindBy(css = ".content-module.subnav-pagination > div")
 	WebElement txt_dayMonthDate;
 	
-	@FindBy(xpath = "//div[@class='detail-item spaced-content']//div[contains(text(),'$value')]//following-sibling::div")
-    WebElement  txt_weatherInfo;
+//	@FindBy(xpath = "//div[@class='detail-item spaced-content']//div[contains(text(),'$value')]//following-sibling::div")
+//    WebElement  txt_weatherInfo;
 	
 	@FindBy(css="div.temp")
 	WebElement txt_temp;
 	
+	public WebElement getDynamicInfo(String value) {
+		return driver.findElement(By.xpath("//div[@class='detail-item spaced-content']//div[contains(text(),'"+value+"')]//following-sibling::div"));
+	}
+
 	public CurrentWeatherReportPage(WebDriver driver) {
 		this.driver = driver;
 		PageFactory.initElements(driver, this);
@@ -64,7 +68,7 @@ public class CurrentWeatherReportPage {
 
 	public String getInformationOfCurrentWeather(String weatherParameter)
 	{
-		 return txt_weatherInfo.getText();
+		 return getDynamicInfo(weatherParameter).getText();
 	}
 	
 	public String getTemperature()
@@ -74,7 +78,7 @@ public class CurrentWeatherReportPage {
 	
 	public Map<String, String> storeInformationOfWeather()
 	{
-		String[] weatherKeys = { "Max UV Index", "Wind", "Wind Gusts", "Humidity", "Indoor Humdity", "Dew Point","Pressure","Cloud Cover","Visibility","Cloud Ceiling" };
+		String[] weatherKeys = { "Wind", "Wind Gusts", "Humidity", "Indoor Humidity", "Dew Point","Pressure","Cloud Cover","Visibility","Cloud Ceiling" };
 		 HashMap<String,String> map = new HashMap<String,String>();
 		 map.put("Temperature", getTemperature());
 		 for (String string : weatherKeys) {
