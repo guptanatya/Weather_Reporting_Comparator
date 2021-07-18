@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE suite SYSTEM "http://testng.org/testng-1.0.dtd">
+<suite name="Suite" configfailurepolicy="continue"
+	parallel="classes" thread-count="1">
+	<parameter name="email"	value="guptanatya9@gmail.com"></parameter>
+	<parameter name="service" value="AccWeather"></parameter>
+
+
+	<test name="Weather Comparator">
+		<classes>
+			<class name="com.weather_reporting.tests.WeatherReportingComparator" />
+		</classes>
+	</test>
+</suite>                              

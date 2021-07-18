@@ -28,10 +28,7 @@ public class CurrentWeatherReportPage {
 
 	@FindBy(css = ".content-module.subnav-pagination > div")
 	WebElement txt_dayMonthDate;
-	
-//	@FindBy(xpath = "//div[@class='detail-item spaced-content']//div[contains(text(),'$value')]//following-sibling::div")
-//    WebElement  txt_weatherInfo;
-	
+
 	@FindBy(css="div.temp")
 	WebElement txt_temp;
 	

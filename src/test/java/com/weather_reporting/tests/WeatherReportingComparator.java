@@ -7,6 +7,7 @@ import org.testng.annotations.Test;
 
 import com.weather_reporting.ui.utils.BaseClass;
 import com.weather_reporting.ui.utils.ConfigFileReader;
+import com.weather_reporting.ui.utils.ReadWrite;
 import com.weather_reporting.webservices.utils.Comparator;
 import com.weather_reporting.webservices.weather.WeatherAPI;
 
@@ -17,7 +18,7 @@ public class WeatherReportingComparator extends BaseClass {
 
 	@Test(priority = 1)
 	public void verifyUserIsOnHomePage() {
-		test.homepage.verifyOnHomePage("Local, National, & Global Daily Weather Forecast | AccuWeather");
+		test.homepage.verifyOnHomePage(ReadWrite.getProperty("Weather_Title"));
 		test.homepage.clickPopup();
 	}
 
@@ -26,7 +27,7 @@ public class WeatherReportingComparator extends BaseClass {
 	 */
 	@Test(priority = 2)
 	public void WeatherReportForParticularCity() {
-		test.homepage.searchForLocation("Noida, Uttar Pradesh");
+		test.homepage.searchForLocation(ReadWrite.getProperty("Noida_City_State"));
 		test.currentWeatherReportPage.verifyCurrentDayAndTime();
 		weatherMap = test.currentWeatherReportPage.storeInformationOfWeather();
 
@@ -37,7 +38,8 @@ public class WeatherReportingComparator extends BaseClass {
 	 */
 	@Test(priority = 3)
 	public void verify_Weather_Data_Appears_OnSearching_By_City() {
-		weatherResponse_city = WeatherAPI.getWeatherInfo("Noida", ConfigFileReader.getProperty("appid"), 200);
+		weatherResponse_city = WeatherAPI.getWeatherInfo(ReadWrite.getProperty("Noida_City"),
+				ConfigFileReader.getProperty("appid"), 200);
 
 	}
 
@@ -46,7 +48,8 @@ public class WeatherReportingComparator extends BaseClass {
 	 */
 	@Test(priority = 4)
 	public void verify_Weather_Data_Appears_OnSearching_By_CityAndStateCode() {
-		WeatherAPI.getWeatherInfo("London,UK", ConfigFileReader.getProperty("appid"), 200);
+		WeatherAPI.getWeatherInfo(ReadWrite.getProperty("London_City_State"), ConfigFileReader.getProperty("appid"),
+				200);
 
 	}
 
@@ -55,7 +58,8 @@ public class WeatherReportingComparator extends BaseClass {
 	 */
 	@Test(priority = 5)
 	public void verify_Weather_Data_Appears_OnSearching_By_City_StateCodeAndCountryCode() {
-		WeatherAPI.getWeatherInfo("Noida,UP,IN", ConfigFileReader.getProperty("appid"), 200);
+		WeatherAPI.getWeatherInfo(ReadWrite.getProperty("Noida_City_State_Country"),
+				ConfigFileReader.getProperty("appid"), 200);
 
 	}
 

@@ -35,8 +35,8 @@ public class Comparator {
     {
         
         boolean flag = false;
-        double valueDiff1 = temp1+2; //12
-        double valueDiff2 = temp1-2;//8
+        double valueDiff1 = temp1+2; 
+        double valueDiff2 = temp1-2;
         if(temp2<=valueDiff1 && temp2 >= valueDiff2)
         {
             flag=true;
