@@ -17,8 +17,9 @@ import com.weather_reporting.ui.utils.ConfigFileReader;
 public class TestSession {
 
 	protected WebDriver driver;
-    public HomePage homepage;  
-    public CurrentWeatherReportPage currentWeatherReportPage;
+	public HomePage homepage;
+	public CurrentWeatherReportPage currentWeatherReportPage;
+
 	private void initPage() {
 		homepage = new HomePage(driver);
 		currentWeatherReportPage = new CurrentWeatherReportPage(driver);
